@@ -1,0 +1,61 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        markup = "pango"
+        colors = true
+        interval = 1
+        color_degraded = "#ff9d00"
+        color_bad = "#ff1d00"
+}
+
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "battery all"
+order += "volume master"
+order += "tztime local"
+
+
+cpu_usage {
+        format = "<span color='#0088cc'> </span>%cpu0, %cpu1, %cpu2, %cpu3 "
+}
+
+memory {
+        memory_used_method = "memavailable"
+        format = " <span color='#0088cc'> </span>%used of %total "
+        threshold_degraded = "10%"
+        threshold_critical = "5%"
+}
+
+disk "/" {
+        format = " <span color='#0088cc'> </span>%free of %total "
+}
+
+battery all {
+        threshold_type = "percentage"
+        low_threshold = 10
+        format = " %status %percentage %remaining "
+        status_unk = "<span color='#ffee00'></span>"
+        status_bat = "<span color='#ff9d00'></span>"
+        status_chr = "<span color='#ffee00'></span>"
+        status_full = "<span color='#0088cc'></span>"
+}
+
+volume master {
+        format = " <span color='#0088cc'></span>: %volume "
+        format_muted = " :  0% "
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+tztime local {
+        format = " <span color='#0088cc'></span> %time"
+        format_time = "%d.%m.%Y %H:%M:%S"
+}
